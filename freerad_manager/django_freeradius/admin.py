@@ -61,12 +61,14 @@ class ReadOnlyAdmin(ModelAdmin):
 
 @admin.register(RadiusGroup)
 class RadiusGroupAdmin(TimeStampedEditableAdmin):
-    pass
+
+    list_display = ['groupname', 'priority', 'notes']
 
 
 @admin.register(RadiusGroupUsers)
 class RadiusGroupUsersAdmin(TimeStampedEditableAdmin):
-    pass
+
+    list_display = ['username', 'groupname']
 
 
 @admin.register(RadiusCheck)
@@ -90,7 +92,7 @@ class RadiusCheckAdmin(TimeStampedEditableAdmin):
             messages.add_message(request, messages.ERROR,
                                  _msg)
             return
-            
+
         if form.data.get('new_value'):
             obj.value = encode_secret(form.data['attribute'],
                                       form.data.get('new_value'))
@@ -111,7 +113,8 @@ class RadiusCheckAdmin(TimeStampedEditableAdmin):
 
 @admin.register(RadiusReply)
 class RadiusReplyAdmin(TimeStampedEditableAdmin):
-    pass
+
+    list_display = ['username', 'value', 'op', 'attribute']
 
 
 @admin.register(RadiusAccounting)
@@ -150,17 +153,19 @@ class NasAdmin(TimeStampedEditableAdmin):
 
 @admin.register(RadiusUserGroup)
 class RadiusUserGroupAdmin(TimeStampedEditableAdmin):
-    pass
+
+    list_display = ['username', 'groupname', 'priority']
 
 
 @admin.register(RadiusGroupReply)
 class RadiusGroupReplyAdmin(TimeStampedEditableAdmin):
-    pass
 
+    list_display = ['groupname', 'value', 'op', 'attribute']
 
 @admin.register(RadiusGroupCheck)
 class RadiusGroupCheckAdmin(TimeStampedEditableAdmin):
-    pass
+
+    list_display = ['groupname', 'value', 'op', 'attribute']
 
 
 @admin.register(RadiusPostAuth)
