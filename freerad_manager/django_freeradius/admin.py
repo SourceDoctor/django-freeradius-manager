@@ -62,17 +62,21 @@ class ReadOnlyAdmin(ModelAdmin):
 @admin.register(RadiusGroup)
 class RadiusGroupAdmin(TimeStampedEditableAdmin):
 
+    ordering = ['groupname', 'priority']
     list_display = ['groupname', 'priority', 'notes']
 
 
 @admin.register(RadiusGroupUsers)
 class RadiusGroupUsersAdmin(TimeStampedEditableAdmin):
 
+    ordering = ['username', 'groupname']
     list_display = ['username', 'groupname']
 
 
 @admin.register(RadiusCheck)
 class RadiusCheckAdmin(TimeStampedEditableAdmin):
+    ordering = ('username', 'attribute', 'is_active', 'created')
+
     list_display = ('username', 'attribute', 'is_active',
                     'created', 'valid_until')
     search_fields = ('username', 'value')
@@ -154,17 +158,20 @@ class NasAdmin(TimeStampedEditableAdmin):
 @admin.register(RadiusUserGroup)
 class RadiusUserGroupAdmin(TimeStampedEditableAdmin):
 
+    ordering = ['username', 'groupname', 'priority']
     list_display = ['username', 'groupname', 'priority']
 
 
 @admin.register(RadiusGroupReply)
 class RadiusGroupReplyAdmin(TimeStampedEditableAdmin):
 
+    ordering = ['groupname', 'value', 'op', 'attribute']
     list_display = ['groupname', 'value', 'op', 'attribute']
 
 @admin.register(RadiusGroupCheck)
 class RadiusGroupCheckAdmin(TimeStampedEditableAdmin):
 
+    ordering = ['groupname', 'value', 'op', 'attribute']
     list_display = ['groupname', 'value', 'op', 'attribute']
 
 
