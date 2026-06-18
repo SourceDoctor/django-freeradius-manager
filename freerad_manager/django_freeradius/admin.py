@@ -65,6 +65,7 @@ class RadiusGroupAdmin(TimeStampedEditableAdmin):
 
     ordering = ['groupname', 'priority']
     list_display = ['groupname', 'priority', 'notes']
+    exclude = ('id',)
 
 
 @admin.register(RadiusGroupUsers)
@@ -72,6 +73,7 @@ class RadiusGroupUsersAdmin(TimeStampedEditableAdmin):
 
     ordering = ['username', 'groupname']
     list_display = ['username', 'groupname']
+    exclude = ('id',)
 
     form = RadGroupUsersAdminForm
 

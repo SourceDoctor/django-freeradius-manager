@@ -1,4 +1,5 @@
 import csv
+import uuid
 from base64 import encodebytes as encodestring
 from hashlib import md5, sha1
 from io import StringIO
@@ -113,7 +114,7 @@ class TimeStampedModel(models.Model):
 
 
 class RadiusGroup(TimeStampedModel):
-    id = models.UUIDField(primary_key=True, db_column='id')
+    id = models.UUIDField(primary_key=True, db_column='id', default = uuid.uuid4)
     groupname = models.CharField(verbose_name=_('group name'),
                                  max_length=255,
                                  unique=True,
@@ -134,8 +135,7 @@ class RadiusGroup(TimeStampedModel):
 
 
 class RadiusGroupUsers(TimeStampedModel):
-    id = models.UUIDField(primary_key=True,
-                          db_column='id')
+    id = models.UUIDField(primary_key=True, db_column='id', default = uuid.uuid4)
     username = models.CharField(verbose_name=_('username'),
                                 max_length=64,
                                 unique=True)
