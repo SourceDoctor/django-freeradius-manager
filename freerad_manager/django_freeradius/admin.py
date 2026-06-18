@@ -9,7 +9,8 @@ from django.utils.safestring import mark_safe
 
 from . admin_actions import disable_action, enable_action
 from . admin_filters import DuplicateListFilter, ExpiredListFilter
-from . forms import RadiusCheckAdminForm, NasModelForm
+from . forms import RadiusCheckAdminForm, NasModelForm, RadUserGroupAdminForm, RadiusReplyAdminForm, RadGroupUsersAdminForm
+from . forms import RadGroupRepliesAdminForm, RadGroupCheckAdminForm
 from . models import *
 
 
@@ -72,6 +73,8 @@ class RadiusGroupUsersAdmin(TimeStampedEditableAdmin):
     ordering = ['username', 'groupname']
     list_display = ['username', 'groupname']
 
+    form = RadGroupUsersAdminForm
+
 
 @admin.register(RadiusCheck)
 class RadiusCheckAdmin(TimeStampedEditableAdmin):
@@ -120,6 +123,8 @@ class RadiusReplyAdmin(TimeStampedEditableAdmin):
 
     list_display = ['username', 'value', 'op', 'attribute']
 
+    form = RadiusReplyAdminForm
+
 
 @admin.register(RadiusAccounting)
 class RadiusAccountingAdmin(ModelAdmin):
@@ -161,6 +166,8 @@ class RadiusUserGroupAdmin(TimeStampedEditableAdmin):
     ordering = ['username', 'groupname', 'priority']
     list_display = ['username', 'groupname', 'priority']
 
+    form = RadUserGroupAdminForm
+
 
 @admin.register(RadiusGroupReply)
 class RadiusGroupReplyAdmin(TimeStampedEditableAdmin):
@@ -168,11 +175,16 @@ class RadiusGroupReplyAdmin(TimeStampedEditableAdmin):
     ordering = ['groupname', 'value', 'op', 'attribute']
     list_display = ['groupname', 'value', 'op', 'attribute']
 
+    form = RadGroupRepliesAdminForm
+
+
 @admin.register(RadiusGroupCheck)
 class RadiusGroupCheckAdmin(TimeStampedEditableAdmin):
 
     ordering = ['groupname', 'value', 'op', 'attribute']
     list_display = ['groupname', 'value', 'op', 'attribute']
+
+    form = RadGroupCheckAdminForm
 
 
 @admin.register(RadiusPostAuth)

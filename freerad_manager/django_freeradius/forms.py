@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.utils.translation import gettext_lazy as _
 
-from . models import RAD_NAS_TYPES, Nas, RadiusCheck
+from . models import RAD_NAS_TYPES, Nas, RadiusCheck, RadiusGroup
 
 
 radcheck_value_field = RadiusCheck._meta.get_field('value')
@@ -41,6 +41,63 @@ class RadiusCheckAdminForm(forms.ModelForm):
     class Meta:
         model = RadiusCheck
         fields = '__all__'
+
+
+class RadUserGroupAdminForm(forms.ModelForm):
+
+    username = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
+    )
+
+    groupname = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+    )
+
+
+class RadiusReplyAdminForm(forms.ModelForm):
+
+    username = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
+    )
+
+
+class RadGroupRepliesAdminForm(forms.ModelForm):
+
+    groupname = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+    )
+
+
+class RadGroupCheckAdminForm(forms.ModelForm):
+
+    groupname = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+    )
+
+
+class RadGroupUsersAdminForm(forms.ModelForm):
+
+    username = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
+    )
+
+    groupname = forms.ChoiceField(
+        required=True,
+        widget=forms.Select,
+        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+    )
 
 
 class NasModelForm(forms.ModelForm):
