@@ -156,7 +156,7 @@ class NasAdmin(TimeStampedEditableAdmin):
     def save_model(self, request, obj, form, change):
         data = form.cleaned_data
         obj.type = data.get('custom_type') or data.get('type')
-        super(AbstractNasAdmin, self).save_model(request, obj, form, change)
+        super().save_model(request, obj, form, change)
 
     class Media:
         css = {'all': ('django-freeradius/css/nas.css',)}
