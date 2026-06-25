@@ -141,6 +141,7 @@ class RadiusAccountingAdmin(ModelAdmin):
 @admin.register(Nas)
 class NasAdmin(TimeStampedEditableAdmin):
     form = NasModelForm
+    ordering = ['name', 'short_name']
     fieldsets = (
         (None, {
             'fields': (
