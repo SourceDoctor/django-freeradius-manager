@@ -82,8 +82,7 @@ class RadiusGroupUsersAdmin(TimeStampedEditableAdmin):
 class RadiusCheckAdmin(TimeStampedEditableAdmin):
     ordering = ('username', 'attribute', 'is_active', 'created')
 
-    list_display = ('username', 'attribute', 'is_active',
-                    'created', 'valid_until')
+    list_display = ('username', 'attribute', 'is_active', 'valid_until', 'notes')
     search_fields = ('username', 'value')
     list_filter = (DuplicateListFilter, ExpiredListFilter, 'created',
                    'modified', 'valid_until')
