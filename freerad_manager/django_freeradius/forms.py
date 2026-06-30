@@ -45,59 +45,74 @@ class RadiusCheckAdminForm(forms.ModelForm):
 
 class RadUserGroupAdminForm(forms.ModelForm):
 
-    username = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-    groupname = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
-    )
+        self.fields['username'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
+                )
+
+        self.fields['groupname'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+                )
 
 
 class RadiusReplyAdminForm(forms.ModelForm):
 
-    username = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['username'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
+                )
 
 
 class RadGroupRepliesAdminForm(forms.ModelForm):
 
-    groupname = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['groupname'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+                )
 
 
 class RadGroupCheckAdminForm(forms.ModelForm):
 
-    groupname = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['groupname'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+                )
 
 
 class RadGroupUsersAdminForm(forms.ModelForm):
 
-    username = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-    groupname = forms.ChoiceField(
-        required=True,
-        widget=forms.Select,
-        choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
-    )
+        self.fields['username'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(username, username) for username in RadiusCheck.objects.order_by('username').values_list('username', flat=True)],
+                )
+
+        self.fields['groupname'] = forms.ChoiceField(
+                required=True,
+                widget=forms.Select,
+                choices=[(groupname, groupname) for groupname in RadiusGroup.objects.order_by('groupname').values_list('groupname', flat=True)],
+                )
 
 
 class NasModelForm(forms.ModelForm):
@@ -112,3 +127,4 @@ class NasModelForm(forms.ModelForm):
     custom_type = forms.CharField(max_length=nas_type_field.max_length,
                                   required=False,
                                   help_text=_('or define a custom type'))
+
