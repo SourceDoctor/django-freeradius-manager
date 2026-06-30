@@ -16,7 +16,6 @@ FREERADIUS_RADCHECK_SECRET_VALIDATORS = getattr(settings,
                                      {'regexp_lowercase': '[a-z]+',
                                       'regexp_uppercase': '[A-Z]+',
                                       'regexp_number': '[0-9]+',
-                                      'regexp_special': '[\!\%\-_+=\[\]\
-                                                        {\}\:\,\.\?\<\>\(\)\;]+'})
+                                      'regexp_special': r'[\!%\-_+=\[\]\{\}:,\.\?<>\(\);]+'})
 
 FREERADIUS_RADHCHECK_SECRET_MIN_LENGTH = getattr(settings, 'FREERADIUS_RADCHECK_SECRET_MIN_LENGTH', 8)
